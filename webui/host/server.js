@@ -9,5 +9,5 @@ expressApp.use('/pub', express.static(path.join(__dirname, '..\public')));
 
 
 expressApp.listen(port, () => {
-console.log(`WebHost running at http://localhost:${port}`);
+    console.log(`WebHost running at http://localhost:${port}`);
 });
