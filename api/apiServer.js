@@ -1,5 +1,6 @@
 const express = require('express');
 const expressApp = express();
+const bodyParser = require('body-parser');
 const port = 9090;
 
 // Import logger & error handler
@@ -10,7 +11,10 @@ const dbAdmin = require('./routes/dbAdmin');
 var categoryRoutes = require('./routes/categories');
 var productRoutes = require('./routes/products');
 
-expressApp.use(express.json());
+//expressApp.use(express.json());
+expressApp.use(bodyParser.json());
+expressApp.use(bodyParser.urlencoded({ extended: true }));
+
 
 // All Routes register here
 expressApp.use('/db', dbAdmin);

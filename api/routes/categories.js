@@ -1,17 +1,30 @@
 var express = require('express');
 var router = express.Router();
 var productRoutes = require('./products');
-var dbService = require('../services/mongoDBService');
+var dbService = require('../services/categoryService');
 
 router.get('/categories', (req, res) => {
-    res.send("All Categories Api");
+    dbService.getCategories(result => {
+        res.send(result);
+    }, () => {
+        res.status(400).send("Failed to fetch all categories");
+    });
 });
-
 
 router.get('/categories/:categoryId', (req, res) => {
-    res.send(`Category: ${req.params.categoryId} details`);
+    dbService.getCategoryById(req.params.categoryId , result => {
+        res.send(result);
+    }, () => {
+        res.status(400).send("Failed to fetch category");
+    });
 });
 
-
+router.post('/categories', (req, res) => {
+    dbService.createCategory(req.body, () => {
+        res.send("New category created");
+    }, () => {
+        res.status(400).send("Failed to create category");
+    });
+});
 
 module.exports = router;

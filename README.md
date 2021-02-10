@@ -7,6 +7,7 @@ E-Commerce web application
 3. Bit bucket account (register for free)
 4. SourceTree Client
 5. MongoDB (or MySQL DB for later)
+6. Postman Native: https://www.postman.com/downloads/
 
 # Steps to get started
 1. After cloning repository
