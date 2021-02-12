@@ -16,4 +16,4 @@ E-Commerce web application
 4. From api folder run: node apiServer.js (starts web api)
 5. From webui\host folder run: node server.js (starts web host for web app) <-- Will use for deployment
 6. During DEV, go to webui\webapp folder run: npm start <-- will compile and publish angular app
-7. Open http://localhost:4200/ on browser to see webUI
+7. Open http://localhost:4444/ on browser to see webUI
