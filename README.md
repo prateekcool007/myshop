@@ -1,6 +1,11 @@
 # myshop
 E-Commerce web application
 
+# Goal
+A free to use, flexible and reliable shopping web platform aimed to reduce your IT costs.
+New versions will have more and more innovative features - based on community feedback/tickets.
+You have full freedom/choice to spawn an individual branch for your specific needs.
+
 # Tools/Software Pre-requisite
 1. Visual Studio Code (latest)
 2. NodeJS (latest)
