@@ -25,4 +25,4 @@ You have full freedom/choice to spawn an individual branch for your specific nee
 
 
 # Demo
-![Demo](https://github.com/prateekcool007/myshop/blob/main/demo/homepage.jpg?raw=true)
+![Demo](https://github.com/prateekcool007/myshop/blob/main/webui/demo/homepage.jpg?raw=true)
