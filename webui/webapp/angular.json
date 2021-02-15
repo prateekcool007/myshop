@@ -67,7 +67,7 @@
           "options": {
             "browserTarget": "webapp:build",
             "port": 4444,
-            "host": "localhost"
+            "host": "::"
           },
           "configurations": {
             "production": {
