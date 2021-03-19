@@ -6,7 +6,7 @@ var service = {
     createCategory: function (categoryData, success, error) {
         if (categoryData === undefined)
             return { code: 400, message: 'No data' };
-        let catObj = new Category(categoryData.name, categoryData.iconUrl);
+        let catObj = new Category(categoryData.name, categoryData.description, categoryData.iconUrl);
         // Insert into Table
         dbService.addCategory(catObj, success, error);
     },

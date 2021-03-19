@@ -1,63 +1,17 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Power Supplies</h5>
-                    <p class="card-text">Best juice makers for that beast of a rig</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
+    <div *ngFor="let cat of Categories; let row = index">
+        <div *ngIf="row % 3 == 0" class="row">
+            <div *ngIf="row != 0" class="spacer-lg"></div>
+            <ng-container *ngFor="let offset of [0,1,2];">
+                <div *ngIf="row + offset < Categories.length;" class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{Categories[row + offset].Name}}</h5>
+                            <p class="card-text">{{Categories[row + offset].Description}}</p>
+                            <a href="#" class="btn btn-primary">Show More</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Hard Drives</h5>
-                    <p class="card-text">Dont forget to look at our storage spaces</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Processors</h5>
-                    <p class="card-text">Best deals on latest generations</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
-                </div>
-            </div>
+            </ng-container>
         </div>
     </div>
-    <div class="row">
-        <div class="spacer-lg"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Monitors</h5>
-                    <p class="card-text">We know you like them slim and curvy</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Routers</h5>
-                    <p class="card-text">Faster than the Jamaican guy</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Casing</h5>
-                    <p class="card-text">Every one needs a house</p>
-                    <a href="#" class="btn btn-primary">Show More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

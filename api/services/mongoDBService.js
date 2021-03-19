@@ -6,6 +6,10 @@ const dbClient = MongoClient(connectionString, { useUnifiedTopology: true });
 
 var mongoDBService = {
 
+    handleError: function (err) {
+        console.error(err);
+    },
+
     test: async function (success, error) {
         try {
             await dbClient.connect((err, client) => {
@@ -21,7 +25,7 @@ var mongoDBService = {
             console.error(err);
         }
         finally {
-            await dbClient.close();
+            //How to disconnect
         }
     },
 
@@ -36,7 +40,7 @@ var mongoDBService = {
                             callback();
                     },
                     (error) => {
-                        this.handleError(error);
+                        module.exports.handleError(error);
                     });
             };
 
@@ -58,11 +62,11 @@ var mongoDBService = {
                 });
 
             }).catch(err => {
-                this.handleError(err);
+                module.exports.handleError(err);
             });
         }
         finally {
-            await dbClient.close();
+            //How to disconnect
         }
     },
 
@@ -73,11 +77,12 @@ var mongoDBService = {
                 var db = client.db("myshopdb");
                 db.collection('categories').insertOne({
                     Name: categoryObj.name,
+                    Description: categoryObj.description,
                     IconUrl: categoryObj.iconUrl,
                     CreatedDate: categoryObj.createdDate
                 }, (err, res) => {
                     if (err) {
-                        this.handleError(err);
+                        module.exports.handleError(err);
                         error();
                     }
                     else if (res.insertedCount != 1) {
@@ -88,17 +93,14 @@ var mongoDBService = {
                         console.log('Insert successful');
                         success();
                     }
-                    dbClient.close();
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
@@ -107,20 +109,18 @@ var mongoDBService = {
         try {
             dbClient.connect().then(client => {
                 var db = client.db("myshopdb");
-                db.collection('categories').find({}).project({ Name: 1, IconUrl: 1 }).toArray((err, result) => {
+                db.collection('categories').find({}).project({ Name: 1, Description: 1, IconUrl: 1 }).toArray((err, result) => {
                     if (err)
                         throw err;
                     success(result);
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
@@ -129,20 +129,18 @@ var mongoDBService = {
         try {
             dbClient.connect().then(client => {
                 var db = client.db("myshopdb");
-                db.collection('categories').find({_id: ObjectId(categoryId)}).project({ Name: 1, IconUrl: 1 }).toArray((err, result) => {
+                db.collection('categories').find({ _id: ObjectId(categoryId) }).project({ Name: 1, Description: 1, IconUrl: 1 }).toArray((err, result) => {
                     if (err)
                         throw err;
                     success(result);
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
@@ -160,7 +158,7 @@ var mongoDBService = {
                     CreatedDate: productObj.createdDate
                 }, (err, res) => {
                     if (err) {
-                        this.handleError(err);
+                        module.exports.handleError(err);
                         error();
                     }
                     else if (res.insertedCount != 1) {
@@ -171,16 +169,13 @@ var mongoDBService = {
                         console.log('Insert successful');
                         success();
                     }
-                    dbClient.close();
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
         }
     },
 
@@ -194,14 +189,12 @@ var mongoDBService = {
                     success(result);
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
@@ -210,20 +203,18 @@ var mongoDBService = {
         try {
             dbClient.connect().then(client => {
                 var db = client.db("myshopdb");
-                db.collection('products').find({_id: ObjectId(productId)}).project({ Name: 1, CategoryId: 1, Description: 1, ImageUrl: 1 }).toArray((err, result) => {
+                db.collection('products').find({ _id: ObjectId(productId) }).project({ Name: 1, CategoryId: 1, Description: 1, ImageUrl: 1 }).toArray((err, result) => {
                     if (err)
                         throw err;
                     success(result);
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
@@ -238,23 +229,15 @@ var mongoDBService = {
                     success(result);
                 });
             }).catch(err => {
-                this.handleError(err);
-                dbClient.close();
+                module.exports.handleError(err);
                 error();
             });
         }
         catch (err) {
             console.error(err);
-            dbClient.close();
             error();
         }
     },
-}
-
-
-this.handleError = (err) => {
-    console.error(err);
-    error();
 }
 
 module.exports = mongoDBService;

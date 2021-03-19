@@ -6,7 +6,7 @@ var service = {
     createProduct: function (productData, success, error) {
         if (productData === undefined)
             return { code: 400, message: 'No data' };
-        let prodObj = new Product(productData.name, productData.categoryId, productData.description, productData.imageUrl);
+        let prodObj = new Product(productData.name, productData.categoryId, productData.description, productData.tagsCSV, productData.imageUrl);
         // Insert into Table
         dbService.addProduct(prodObj, success, error);
     },
