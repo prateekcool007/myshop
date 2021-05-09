@@ -1,7 +1,7 @@
 errors = function (expressApp) {
     expressApp.use((err, req, res, next) => {
         console.error(`${getDateString()} - ${err.stack}`);
-        res.status(500).send('Unexpected Error');
+        res.status(500).send('Unexpected Error').end();
     });
 };
 

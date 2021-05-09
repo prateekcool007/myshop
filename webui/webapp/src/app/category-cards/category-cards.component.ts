@@ -19,9 +19,10 @@ export class CategoryCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(data => {
-      this.Categories = data;
-      console.log(data)
+    this.categoryService.getCategories().subscribe({
+      next: data => {
+        this.Categories = data;
+      }
     });
   }
 
